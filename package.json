@@ -22,9 +22,10 @@
   },
   "homepage": "https://github.com/jrdavicilio/ProjectBreak2#readme",
   "dependencies": {
-    "cloudinary": "^2.6.1",
+    "cloudinary": "2.6.1",
     "dotenv": "16.5.0",
     "express": "5.1.0",
-    "mongoose": "^8.15.1"
+    "method-override": "3.0.0",
+    "mongoose": "8.15.1"
   }
 }
