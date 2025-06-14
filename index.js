@@ -13,7 +13,9 @@ app.use(methodOverride('_method'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
-app.use('/', routes)
+app.get('/', (req, res) => {
+  res.redirect('/dashboard')
+})
 
 dbConnection()
 
