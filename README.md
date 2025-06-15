@@ -114,7 +114,6 @@ Definición de rutas para API y vistas.
 David Fernández Alonso - davidferal26@gmail.com
 Repositorio: https://github.com/jrdavicilio/ProjectBreak2
 
-
 ## Deploy
 Puedes ver la aplicación en vivo en:  
 [https://projectbreak2-g61j.onrender.com](https://projectbreak2-g61j.onrender.com)
