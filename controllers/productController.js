@@ -7,7 +7,8 @@ const showHome = async (req, res) => {
     const products = await Product.find();
     const html = baseHtml(
       getNavBar(false) + 
-      '<h1>Productos</h1>' + 
+      '<h1>Productos</h1>' +
+      '<div class="product-list">' +
       products.map(product => `
         <div class="product-card">
           <img src="${product.image || ''}" alt="${product.name}">
@@ -16,7 +17,8 @@ const showHome = async (req, res) => {
           <p>Color: ${product.color || 'Sin color'}</p>
           <a href="/products/${product._id}">Ver detalle</a>
         </div>
-      `).join('')
+      `).join('') +
+      '</div>'
     );
     res.send(html);
   } catch (error) {
@@ -25,24 +27,27 @@ const showHome = async (req, res) => {
   }
 };
 
+
 const showProducts = async (req, res) => {
   try {
     const isDashboard = req.originalUrl.startsWith('/dashboard');
     const products = await Product.find();
 
     const productCards = products.map(product => `
-      <div class="product-card">
-        <img src="${product.image || ''}" alt="${product.name}">
-        <h3>${product.name}</h3>
-        <p>${product.price}€</p>
-        <p>Color: ${product.color || 'Sin color'}</p>
-        <a href="${isDashboard ? `/dashboard/${product._id}` : `/products/${product._id}`}">Ver detalle</a>
-        ${isDashboard ? `
-          <a href="/dashboard/${product._id}/edit">Editar</a>
-          <form action="/dashboard/${product._id}/delete" method="POST" style="display:inline;">
-            <button class="deleteProduct" type="submit" onclick="return confirm('¿Estas seguro/a de que quieres eliminar este producto?')">Eliminar</button>
-          </form>
-        ` : ''}
+      <div class="product-list">
+        <div class="product-card">
+          <img src="${product.image || ''}" alt="${product.name}">
+          <h3>${product.name}</h3>
+          <p>${product.price}€</p>
+          <p>Color: ${product.color || 'Sin color'}</p>
+          <a href="${isDashboard ? `/dashboard/${product._id}` : `/products/${product._id}`}">Ver detalle</a>
+          ${isDashboard ? `
+            <a href="/dashboard/${product._id}/edit">Editar</a>
+            <form action="/dashboard/${product._id}/delete" method="POST" style="display:inline;">
+              <button class="deleteProduct" type="submit" onclick="return confirm('¿Estas seguro/a de que quieres eliminar este producto?')">Eliminar</button>
+            </form>
+          ` : ''}
+        </div>
       </div>
     `).join('');
 
@@ -163,7 +168,7 @@ const showEditProduct = async (req, res) => {
           <input type="file" name="image" id="image" accept="image/*" />
           <br/>
           Imagen actual:
-          ${product.image ? `<img src="${product.image}" width="150" alt="Imagen actual"/>` : 'No hay imagen'}
+          ${product.image ? `<img src="${product.image}" class="preview-image" alt="Imagen actual"/>` : 'No hay imagen'}
         </p>
         <p>
           <label for="color">Color:</label>
