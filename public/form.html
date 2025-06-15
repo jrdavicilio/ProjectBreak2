@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="/styles.css" />
+  <title>Crear producto</title>
+</head>
+<body>
+  <h1>Crear producto</h1>
+  <form action="/dashboard" method="POST" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Nombre" required />
+    <select name="color" required>
+      <option value="Rojo">Rojo</option>
+      <option value="Azul">Azul</option>
+      <option value="Verde">Verde</option>
+      <option value="Negro">Negro</option>
+      <option value="Blanco">Blanco</option>
+    </select>
+    <input type="number" name="price" placeholder="Precio" required />
+    <input type="file" name="image" accept="image/*" />
+    <button type="submit">Crear producto</button>
+  </form>
+</body>
+</html>
